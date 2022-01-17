@@ -1,5 +1,5 @@
 import Gesture from '../Gesture/Gesture';
-import { ScoreContext } from '../../context/ScoreContext';
+import { ScoreContext } from '../../contexts/ScoreContext';
 import { useContext } from 'react';
 
 const GameBoard = () => {

@@ -1,6 +1,6 @@
 import Header from './components/Header/Header';
 import GameBoard from './components/GameBoard/GameBoard';
-import { ScoreContextProvider } from './context/ScoreContext';
+import { ScoreContextProvider } from './contexts/ScoreContext';
 
 function App() {
   return (

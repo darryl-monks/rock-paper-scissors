@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ScoreContext } from '../../context/ScoreContext';
+import { ScoreContext } from '../../contexts/ScoreContext';
 
 const ScoreCount = () => {
   const { scoreCount } = useContext(ScoreContext);
