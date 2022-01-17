@@ -1,23 +1,12 @@
 import { createContext, useReducer } from 'react';
+import scoreReducer from '../reducers/scoreReducer';
 
-const reducer = (state, action) => {
-  switch (action) {
-    case 'increase':
-      return state + 1;
-    case 'decrease':
-      if (state > 0) {
-        return state - 1;
-      }
-      return state;
-    default:
-      return state;
-  }
-};
+const DEFAULT_SCORE = 0;
 
 export const ScoreContext = createContext();
 
 export const ScoreContextProvider = ({ children }) => {
-  const [scoreCount, scoreDispatch] = useReducer(reducer, 0);
+  const [scoreCount, scoreDispatch] = useReducer(scoreReducer, DEFAULT_SCORE);
 
   return (
     <ScoreContext.Provider

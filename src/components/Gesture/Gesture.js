@@ -1,3 +1,3 @@
-const Gesture = ({ name }) => <div>{name}</div>;
+const Gesture = ({ name }) => <button>{name}</button>;
 
 export default Gesture;
