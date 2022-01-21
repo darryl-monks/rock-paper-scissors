@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { ScoreContext } from '../../contexts/ScoreContext';
+import { useScore } from '../../contexts/ScoreContext';
 
 const ScoreCount = () => {
-  const { scoreCount } = useContext(ScoreContext);
+  const { score } = useScore();
 
   return (
     <>
-      <div>{scoreCount}</div>
+      <div>{score}</div>
     </>
   );
 };

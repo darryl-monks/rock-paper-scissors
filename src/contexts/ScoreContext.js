@@ -1,17 +1,26 @@
-import { createContext, useReducer } from 'react';
-import scoreReducer from '../reducers/scoreReducer';
+import { createContext, useContext, useReducer } from 'react';
 
 const DEFAULT_SCORE = 0;
 
-export const ScoreContext = createContext();
+const ScoreContext = createContext();
 
-export const ScoreContextProvider = ({ children }) => {
-  const [scoreCount, scoreDispatch] = useReducer(scoreReducer, DEFAULT_SCORE);
+const scoreReducer = (score, action) => {
+  if (action === 'increase') {
+    score++;
+  } else if (action === 'decrease' && score > 0) {
+    score--;
+  }
+
+  return score;
+};
+
+const ScoreProvider = ({ children }) => {
+  const [score, scoreDispatch] = useReducer(scoreReducer, DEFAULT_SCORE);
 
   return (
     <ScoreContext.Provider
       value={{
-        scoreCount,
+        score,
         scoreDispatch,
       }}
     >
@@ -19,3 +28,9 @@ export const ScoreContextProvider = ({ children }) => {
     </ScoreContext.Provider>
   );
 };
+
+const useScore = () => {
+  return useContext(ScoreContext);
+};
+
+export { ScoreProvider, useScore };
