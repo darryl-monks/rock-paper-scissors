@@ -6,8 +6,8 @@ const Round = () => {
 
   return (
     <>
-      <Gesture gesture={activeGesture} isStatic />
-      <Gesture gesture="Paper" isStatic />
+      <Gesture gesture={activeGesture} />
+      <Gesture gesture="Paper" />
     </>
   );
 };

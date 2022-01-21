@@ -1,13 +1,13 @@
 import { useActiveGesture } from '../../contexts/ActiveGestureContext';
 
-const Gesture = ({ gesture, isStatic }) => {
-  const { setActiveGesture } = useActiveGesture();
+const Gesture = ({ gesture }) => {
+  const { activeGesture, setActiveGesture } = useActiveGesture();
 
   const handleClick = (event) => {
     setActiveGesture(gesture);
   };
 
-  if (isStatic) {
+  if (activeGesture) {
     return <div>{gesture}</div>;
   }
 
