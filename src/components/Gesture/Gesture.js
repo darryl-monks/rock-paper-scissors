@@ -1,13 +1,13 @@
-import { useActiveGesture } from '../../contexts/ActiveGestureContext';
+import { usePlayerGesture } from '../../contexts/PlayerGestureProvider';
 
 const Gesture = ({ gesture }) => {
-  const { activeGesture, setActiveGesture } = useActiveGesture();
+  const { playerGesture, setPlayerGesture } = usePlayerGesture();
 
-  const handleClick = (event) => {
-    setActiveGesture(gesture);
+  const handleClick = () => {
+    setPlayerGesture(gesture);
   };
 
-  if (activeGesture) {
+  if (playerGesture) {
     return <div>{gesture}</div>;
   }
 

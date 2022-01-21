@@ -1,13 +1,19 @@
 import Gesture from '../Gesture/Gesture';
-import { useActiveGesture } from '../../contexts/ActiveGestureContext';
+import availableGestures from '../../data/availableGestures';
+import { useScore } from '../../contexts/ScoreContext';
+import { usePlayerGesture } from '../../contexts/PlayerGestureProvider';
 
 const Round = () => {
-  const { activeGesture } = useActiveGesture();
+  const { scoreDispatch } = useScore();
+  const { playerGesture } = usePlayerGesture();
+  const cpuChoice = Math.floor(Math.random() * availableGestures.length);
+  const cpuGesture = availableGestures[cpuChoice];
 
   return (
     <>
-      <Gesture gesture={activeGesture} />
-      <Gesture gesture="Paper" />
+      <button onClick={() => scoreDispatch('increase')}>Increase Score</button>
+      <Gesture gesture={playerGesture} />
+      <Gesture gesture={cpuGesture} />
     </>
   );
 };

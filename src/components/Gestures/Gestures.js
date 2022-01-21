@@ -1,11 +1,10 @@
 import Gesture from '../Gesture/Gesture';
-
-const GESTURES = ['Rock', 'Paper', 'Scissors'];
+import availableGestures from '../../data/availableGestures';
 
 const Gestures = () => {
   return (
     <>
-      {GESTURES.map((gesture, index) => (
+      {availableGestures.map((gesture, index) => (
         <Gesture gesture={gesture} key={index}></Gesture>
       ))}
     </>

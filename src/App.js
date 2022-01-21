@@ -1,15 +1,15 @@
 import Header from './components/Header/Header';
 import Board from './components/Board/Board';
 import { ScoreProvider } from './contexts/ScoreContext';
-import { ActiveGestureProvider } from './contexts/ActiveGestureContext';
+import { PlayerGestureProvider } from './contexts/PlayerGestureProvider';
 
 function App() {
   return (
     <ScoreProvider>
       <Header />
-      <ActiveGestureProvider>
+      <PlayerGestureProvider>
         <Board />
-      </ActiveGestureProvider>
+      </PlayerGestureProvider>
     </ScoreProvider>
   );
 }

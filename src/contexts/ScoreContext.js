@@ -1,7 +1,5 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const DEFAULT_SCORE = 0;
-
 const ScoreContext = createContext();
 
 const scoreReducer = (score, action) => {
@@ -15,7 +13,7 @@ const scoreReducer = (score, action) => {
 };
 
 const ScoreProvider = ({ children }) => {
-  const [score, scoreDispatch] = useReducer(scoreReducer, DEFAULT_SCORE);
+  const [score, scoreDispatch] = useReducer(scoreReducer, 0);
 
   return (
     <ScoreContext.Provider

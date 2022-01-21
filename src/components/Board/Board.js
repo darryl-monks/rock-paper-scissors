@@ -1,11 +1,11 @@
 import Round from '../Round/Round';
 import Gestures from '../Gestures/Gestures';
-import { useActiveGesture } from '../../contexts/ActiveGestureContext';
+import { usePlayerGesture } from '../../contexts/PlayerGestureProvider';
 
 const Board = () => {
-  const { activeGesture } = useActiveGesture();
+  const { playerGesture } = usePlayerGesture();
 
-  if (activeGesture) {
+  if (playerGesture) {
     return <Round />;
   }
 
