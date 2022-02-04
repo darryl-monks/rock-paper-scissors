@@ -11,8 +11,8 @@ function Game() {
   const [computerChoice, setComputerChoice] = useState(null);
   const [gameState, setGameState] = useState(null);
 
-  function handlePlayerChoice(playerChoiceId) {
-    const choice = choiceAPI.getChoice(playerChoiceId);
+  function handlePlayerChoice(chosenPlayerChoiceId) {
+    const choice = choiceAPI.getChoice(chosenPlayerChoiceId);
     setPlayerChoice(choice);
     return choice;
   }
@@ -46,8 +46,8 @@ function Game() {
     }
   }
 
-  async function startRound(playerChoiceId) {
-    const chosenPlayerChoice = handlePlayerChoice(playerChoiceId);
+  async function startRound(chosenPlayerChoiceId) {
+    const chosenPlayerChoice = handlePlayerChoice(chosenPlayerChoiceId);
     const chosenComputerChoice = await handleComputerChoice();
     endRound(chosenPlayerChoice, chosenComputerChoice);
   }
