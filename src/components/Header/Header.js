@@ -1,5 +1,7 @@
-function Header(props) {
-  const { score } = props;
+import { useScore } from '../../context/Score/Score';
+
+function Header() {
+  const { score } = useScore();
 
   return (
     <>

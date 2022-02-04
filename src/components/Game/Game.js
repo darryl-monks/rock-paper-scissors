@@ -1,86 +1,52 @@
 import { useState } from 'react';
+import { useScore } from '../../context/Score/Score';
+import choiceAPI from '../../api/choice/choice';
+import Choices from '../Choices/Choices';
+import RoundStart from '../RoundStart/RoundStart';
+import RoundEnd from '../RoundEnd/RoundEnd';
 
-const choices = [
-  {
-    id: 1,
-    name: 'Rock',
-    beats: ['Scissors', 'Lizard'],
-  },
-  {
-    id: 2,
-    name: 'Paper',
-    beats: ['Rock', 'Spock'],
-  },
-  {
-    id: 3,
-    name: 'Scissors',
-    beats: ['Paper', 'Lizard'],
-  },
-  {
-    id: 4,
-    name: 'Lizard',
-    beats: ['Spock', 'Paper'],
-  },
-  {
-    id: 5,
-    name: 'Spock',
-    beats: ['Scissors', 'Rock'],
-  },
-];
-
-function Game(props) {
-  const { score, setScore } = props;
+function Game() {
+  const { scoreDispatch } = useScore();
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [gameState, setGameState] = useState(null);
-  const computerChoiceDelay = 2000;
-
-  function getChoice(id) {
-    return choices.find((choice) => choice.id === id);
-  }
-
-  function getComputerChoice() {
-    const randomGeneratedChoice = Math.ceil(Math.random() * choices.length);
-    return getChoice(randomGeneratedChoice);
-  }
 
   function handlePlayerChoice(playerChoiceId) {
-    const chosenPlayerChoice = getChoice(playerChoiceId);
-    setPlayerChoice(chosenPlayerChoice);
-    return chosenPlayerChoice;
+    const choice = choiceAPI.getChoice(playerChoiceId);
+    setPlayerChoice(choice);
+    return choice;
   }
 
   function handleComputerChoice() {
     return new Promise((resolve) => {
       setTimeout(() => {
-        const chosenComputerChoice = getComputerChoice();
-        setComputerChoice(chosenComputerChoice);
-        resolve(chosenComputerChoice);
-      }, computerChoiceDelay);
+        const choice = choiceAPI.getComputerChoice();
+        setComputerChoice(choice);
+        resolve(choice);
+      }, 2000);
     });
   }
 
   async function playRound(playerChoiceId) {
     const chosenPlayerChoice = handlePlayerChoice(playerChoiceId);
     const chosenComputerChoice = await handleComputerChoice();
-    handleWinner(chosenPlayerChoice, chosenComputerChoice);
+    chooseWinner(chosenPlayerChoice, chosenComputerChoice);
   }
 
-  function doesPlayerChoiceBeatComputerChoice(chosenPlayerChoice, chosenComputerChoice) {
-    return chosenPlayerChoice.beats.some((option) => option === chosenComputerChoice.name);
-  }
+  function chooseWinner(chosenPlayerChoice, chosenComputerChoice) {
+    const playerBeatComputer = choiceAPI.didPlayerBeatComputer(
+      chosenPlayerChoice,
+      chosenComputerChoice
+    );
 
-  function handleWinner(chosenPlayerChoice, chosenComputerChoice) {
-    const playerBeatsComputer = doesPlayerChoiceBeatComputerChoice(chosenPlayerChoice, chosenComputerChoice);
-
-    if (playerBeatsComputer) {
+    if (playerBeatComputer) {
       setGameState('You Win');
-      increaseScore();
+      scoreDispatch('increase');
     } else if (chosenPlayerChoice === chosenComputerChoice) {
       setGameState('Draw');
     } else {
       setGameState('You Lose');
-      decreaseScore();
+      scoreDispatch('decrease');
     }
   }
 
@@ -90,43 +56,22 @@ function Game(props) {
     setComputerChoice(null);
   }
 
-  function increaseScore() {
-    setScore(score + 1);
-  }
-
-  function decreaseScore() {
-    if (score > 0) {
-      setScore(score - 1);
-    }
-  }
-
-  if (playerChoice && !computerChoice) {
-    return <div>{playerChoice.name} : ...</div>;
-  }
-
-  if (playerChoice) {
+  if (playerChoice && computerChoice) {
     return (
-      <div>
-        <div>
-          {playerChoice.name} : {computerChoice.name}
-        </div>
-        <div>{gameState}</div>
-        <div>
-          <button onClick={() => restartGame()}>Play Again</button>
-        </div>
-      </div>
+      <RoundEnd
+        playerChoice={playerChoice}
+        computerChoice={computerChoice}
+        gameState={gameState}
+        restartGame={restartGame}
+      />
     );
   }
 
-  return (
-    <div>
-      {choices.map(({ name, id }) => (
-        <button key={id} onClick={() => playRound(id)}>
-          {name}
-        </button>
-      ))}
-    </div>
-  );
+  if (playerChoice) {
+    return <RoundStart playerChoice={playerChoice} />;
+  }
+
+  return <Choices choices={choiceAPI.choices} onChoiceClick={playRound} />;
 }
 
 export default Game;
