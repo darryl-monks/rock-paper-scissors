@@ -18,22 +18,18 @@ function Game() {
   }
 
   function handleComputerChoice() {
+    const delay = 2000;
+
     return new Promise((resolve) => {
       setTimeout(() => {
         const choice = choiceAPI.getComputerChoice();
         setComputerChoice(choice);
         resolve(choice);
-      }, 2000);
+      }, delay);
     });
   }
 
-  async function playRound(playerChoiceId) {
-    const chosenPlayerChoice = handlePlayerChoice(playerChoiceId);
-    const chosenComputerChoice = await handleComputerChoice();
-    chooseWinner(chosenPlayerChoice, chosenComputerChoice);
-  }
-
-  function chooseWinner(chosenPlayerChoice, chosenComputerChoice) {
+  function endRound(chosenPlayerChoice, chosenComputerChoice) {
     const playerBeatComputer = choiceAPI.didPlayerBeatComputer(
       chosenPlayerChoice,
       chosenComputerChoice
@@ -48,6 +44,12 @@ function Game() {
       setGameState('You Lose');
       scoreDispatch('decrease');
     }
+  }
+
+  async function startRound(playerChoiceId) {
+    const chosenPlayerChoice = handlePlayerChoice(playerChoiceId);
+    const chosenComputerChoice = await handleComputerChoice();
+    endRound(chosenPlayerChoice, chosenComputerChoice);
   }
 
   function restartGame() {
@@ -71,7 +73,7 @@ function Game() {
     return <RoundStart playerChoice={playerChoice} />;
   }
 
-  return <Choices choices={choiceAPI.choices} onChoiceClick={playRound} />;
+  return <Choices choices={choiceAPI.choices} onChoiceClick={startRound} />;
 }
 
 export default Game;

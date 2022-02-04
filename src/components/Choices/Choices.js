@@ -1,12 +1,12 @@
+import Choice from '../Choice/Choice';
+
 function Choices(props) {
   const { choices, onChoiceClick } = props;
 
   return (
     <div>
-      {choices.map(({ name, id }) => (
-        <button key={id} onClick={() => onChoiceClick(id)}>
-          {name}
-        </button>
+      {choices.map(({ id, name }) => (
+        <Choice key={id} id={id} name={name} onChoiceClick={onChoiceClick} />
       ))}
     </div>
   );
