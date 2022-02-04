@@ -3,27 +3,27 @@ class ChoiceAPI {
     this.choices = [
       {
         id: 1,
-        name: 'Rock',
+        choice: 'Rock',
         beats: ['Scissors', 'Lizard'],
       },
       {
         id: 2,
-        name: 'Paper',
+        choice: 'Paper',
         beats: ['Rock', 'Spock'],
       },
       {
         id: 3,
-        name: 'Scissors',
+        choice: 'Scissors',
         beats: ['Paper', 'Lizard'],
       },
       {
         id: 4,
-        name: 'Lizard',
+        choice: 'Lizard',
         beats: ['Spock', 'Paper'],
       },
       {
         id: 5,
-        name: 'Spock',
+        choice: 'Spock',
         beats: ['Scissors', 'Rock'],
       },
     ];
@@ -39,7 +39,7 @@ class ChoiceAPI {
   }
 
   didPlayerBeatComputer(playerChoice, computerChoice) {
-    return playerChoice.beats.some((choice) => choice === computerChoice.name);
+    return playerChoice.beats.some((choice) => choice === computerChoice.choice);
   }
 }
 

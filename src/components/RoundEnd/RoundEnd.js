@@ -4,7 +4,7 @@ function RoundEnd(props) {
   return (
     <div>
       <div>
-        {playerChoice.name} : {computerChoice.name}
+        {playerChoice.choice} : {computerChoice.choice}
       </div>
       <div>{gameState}</div>
       <div>

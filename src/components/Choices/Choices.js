@@ -5,8 +5,8 @@ function Choices(props) {
 
   return (
     <div>
-      {choices.map(({ id, name }) => (
-        <Choice key={id} id={id} name={name} onChoiceClick={onChoiceClick} />
+      {choices.map(({ id, choice }) => (
+        <Choice key={id} id={id} choice={choice} onChoiceClick={onChoiceClick} />
       ))}
     </div>
   );
