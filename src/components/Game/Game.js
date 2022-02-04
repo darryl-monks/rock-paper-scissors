@@ -33,6 +33,7 @@ function Game(props) {
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [gameState, setGameState] = useState(null);
+  const computerChoiceDelay = 2000;
 
   function getChoice(id) {
     return choices.find((choice) => choice.id === id);
@@ -43,12 +44,25 @@ function Game(props) {
     return getChoice(randomGeneratedChoice);
   }
 
-  function playRound(playerChoiceId) {
+  function handlePlayerChoice(playerChoiceId) {
     const chosenPlayerChoice = getChoice(playerChoiceId);
-    const chosenComputerChoice = getComputerChoice();
-
     setPlayerChoice(chosenPlayerChoice);
-    setComputerChoice(chosenComputerChoice);
+    return chosenPlayerChoice;
+  }
+
+  function handleComputerChoice() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const chosenComputerChoice = getComputerChoice();
+        setComputerChoice(chosenComputerChoice);
+        resolve(chosenComputerChoice);
+      }, computerChoiceDelay);
+    });
+  }
+
+  async function playRound(playerChoiceId) {
+    const chosenPlayerChoice = handlePlayerChoice(playerChoiceId);
+    const chosenComputerChoice = await handleComputerChoice();
     handleWinner(chosenPlayerChoice, chosenComputerChoice);
   }
 
@@ -84,6 +98,10 @@ function Game(props) {
     if (score > 0) {
       setScore(score - 1);
     }
+  }
+
+  if (playerChoice && !computerChoice) {
+    return <div>{playerChoice.name} : ...</div>;
   }
 
   if (playerChoice) {
