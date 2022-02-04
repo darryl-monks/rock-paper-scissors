@@ -1,16 +1,15 @@
+import { useState } from 'react';
 import Header from './components/Header/Header';
-import Board from './components/Board/Board';
-import { ScoreProvider } from './contexts/ScoreContext';
-import { PlayerGestureProvider } from './contexts/PlayerGestureProvider';
+import Game from './components/Game/Game';
 
 function App() {
+  const [score, setScore] = useState(0);
+
   return (
-    <ScoreProvider>
-      <Header />
-      <PlayerGestureProvider>
-        <Board />
-      </PlayerGestureProvider>
-    </ScoreProvider>
+    <>
+      <Header score={score} />
+      <Game score={score} setScore={setScore} />
+    </>
   );
 }
 

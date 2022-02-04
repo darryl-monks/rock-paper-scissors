@@ -1,13 +1,24 @@
-import Logo from '../Logo/Logo';
-import ScoreBoard from '../ScoreBoard/ScoreBoard';
+function Header(props) {
+  const { score } = props;
 
-const Header = () => {
   return (
-    <header>
-      <Logo />
-      <ScoreBoard />
-    </header>
+    <>
+      <header>
+        <h1>
+          Rock
+          <br />
+          Paper
+          <br />
+          Scissors
+        </h1>
+
+        <div>
+          <div>Score</div>
+          <div>{score}</div>
+        </div>
+      </header>
+    </>
   );
-};
+}
 
 export default Header;
