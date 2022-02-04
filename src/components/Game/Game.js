@@ -52,12 +52,12 @@ function Game(props) {
     handleWinner(chosenPlayerChoice, chosenComputerChoice);
   }
 
-  function doesPlayerChoiceBeatsComputerChoice(chosenPlayerChoice, chosenComputerChoice) {
+  function doesPlayerChoiceBeatComputerChoice(chosenPlayerChoice, chosenComputerChoice) {
     return chosenPlayerChoice.beats.some((option) => option === chosenComputerChoice.name);
   }
 
   function handleWinner(chosenPlayerChoice, chosenComputerChoice) {
-    const playerBeatsComputer = doesPlayerChoiceBeatsComputerChoice(chosenPlayerChoice, chosenComputerChoice);
+    const playerBeatsComputer = doesPlayerChoiceBeatComputerChoice(chosenPlayerChoice, chosenComputerChoice);
 
     if (playerBeatsComputer) {
       setGameState('You Win');
