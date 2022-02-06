@@ -1,23 +1,12 @@
-import { useScore } from '../../context/Score/Score';
+import Logo from '../Logo/Logo';
+import ScoreBoard from '../ScoreBoard/ScoreBoard';
 
 function Header() {
-  const { score } = useScore();
-
   return (
     <>
       <header>
-        <h1>
-          Rock
-          <br />
-          Paper
-          <br />
-          Scissors
-        </h1>
-
-        <div>
-          <div>Score</div>
-          <div>{score}</div>
-        </div>
+        <Logo />
+        <ScoreBoard />
       </header>
     </>
   );
