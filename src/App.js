@@ -5,7 +5,8 @@ import Game from './components/Game/Game';
 import Styles from './components/Styles/Styles';
 
 const Container = styled.div`
-  padding: 2rem;
+  max-width: 960px;
+  margin: auto;
 `;
 
 const GameContainer = styled.div`
@@ -13,7 +14,6 @@ const GameContainer = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: 320px;
 `;
 
 function App() {

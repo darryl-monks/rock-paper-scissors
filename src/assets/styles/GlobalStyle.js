@@ -12,11 +12,8 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 600;
   }
 
-  html, body {
-    margin: 0;
-  }
-
   body {
+    margin: 2rem;
     color: var(--main-font-color);
     background: hsl(237, 49%, 15%);
     background: var(--main-bg-color);

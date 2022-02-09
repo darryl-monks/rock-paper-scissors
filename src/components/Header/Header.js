@@ -7,6 +7,7 @@ const Container = styled.header`
   padding: 1rem;
   border: 2px solid hsl(217, 16%, 45%);
   border-radius: 1rem;
+  align-items: center;
 `;
 
 function Header() {
