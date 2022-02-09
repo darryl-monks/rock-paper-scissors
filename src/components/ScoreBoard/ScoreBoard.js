@@ -9,7 +9,8 @@ const Container = styled.div`
   justify-content: center;
   background-color: #fff;
   border-radius: 0.5rem;
-  min-width: 10rem;
+  width: 100%;
+  max-width: 10rem;
 `;
 
 const Heading = styled.div`

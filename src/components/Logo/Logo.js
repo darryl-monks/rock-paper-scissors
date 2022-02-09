@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import choiceAPI from '../../api/choice/choice';
 
 const Container = styled.h1`
-  margin: 0;
+  margin: 0 1rem 0 0;
   font-size: 1.5rem;
   text-transform: uppercase;
 `;
