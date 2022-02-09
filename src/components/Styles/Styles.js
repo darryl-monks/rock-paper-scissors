@@ -1,10 +1,10 @@
-import TypographyStyle from '../../assets/styles/TypographyStyle';
+import ThemeStyle from '../../assets/styles/ThemeStyle';
 import GlobalStyle from '../../assets/styles/GlobalStyle';
 
 function Styles(props) {
   return (
     <>
-      <TypographyStyle />
+      <ThemeStyle />
       <GlobalStyle />
     </>
   );
