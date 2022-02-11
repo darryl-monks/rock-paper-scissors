@@ -4,11 +4,18 @@ function Choices(props) {
   const { choices, onChoiceClick } = props;
 
   return (
-    <div>
-      {choices.map(({ id, choice }) => (
-        <Choice key={id} id={id} choice={choice} onChoiceClick={onChoiceClick} />
+    <>
+      {choices.map(({ id, choice, icon, theme }) => (
+        <Choice
+          key={id}
+          id={id}
+          choice={choice}
+          icon={icon}
+          theme={theme}
+          onChoiceClick={onChoiceClick}
+        />
       ))}
-    </div>
+    </>
   );
 }
 

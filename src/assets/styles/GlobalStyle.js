@@ -18,6 +18,11 @@ const GlobalStyle = createGlobalStyle`
     background: hsl(237, 49%, 15%);
     background: var(--main-bg-color);
   }
+
+  button {
+    appearance: none;
+    border-radius: 0;
+  }
 `;
 
 export default GlobalStyle;
