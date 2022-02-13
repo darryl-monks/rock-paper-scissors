@@ -5,7 +5,7 @@ import Game from './components/Game/Game';
 import Styles from './components/Styles/Styles';
 
 const Container = styled.div`
-  max-width: 960px;
+  max-width: 768px;
   margin: auto;
 `;
 

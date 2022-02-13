@@ -8,14 +8,14 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(0.7);
+  transform: scale(0.6);
 
   @media (min-width: ${Breakpoints.small}) {
-    transform: scale(0.8);
+    transform: scale(0.85);
   }
 
   @media (min-width: ${Breakpoints.medium}) {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 `;
 
