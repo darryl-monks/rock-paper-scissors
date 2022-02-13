@@ -9,21 +9,13 @@ const Container = styled.div`
   margin: auto;
 `;
 
-const GameContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 function App() {
   return (
     <ScoreProvider>
       <Styles />
       <Container>
         <Header />
-        <GameContainer>
-          <Game />
-        </GameContainer>
+        <Game />
       </Container>
     </ScoreProvider>
   );
