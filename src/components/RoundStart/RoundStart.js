@@ -1,6 +1,10 @@
 function RoundStart(props) {
-  const { playerChoice } = props;
-  return <div>{playerChoice.choice} : ...</div>;
+  const { playerChoice, countdown } = props;
+  return (
+    <div>
+      {playerChoice.choice} : {countdown}
+    </div>
+  );
 }
 
 export default RoundStart;
